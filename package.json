@@ -2,7 +2,7 @@
   "name": "stock-pwa",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "description": "stock pwa",
   "author": "henrysenx",
   "repository": {
@@ -13,7 +13,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:cypress": "cypress open",
+    "test:cypress:run": "cypress run"
   },
   "dependencies": {
     "@vueuse/core": "^12.4.0",
@@ -24,13 +26,19 @@
     "vue3-apexcharts": "^1.8.0"
   },
   "devDependencies": {
+    "@types/node": "^24.2.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "autoprefixer": "^10.4.20",
+    "cypress": "^14.5.3",
     "postcss": "^8.5.0",
     "tailwindcss": "^3.4.17",
+    "ts-node": "^10.9.2",
     "typescript": "~5.6.2",
     "vite": "^6.0.5",
     "vue-tsc": "^2.2.0"
+  },
+  "cypress": {
+    "configFile": "cypress.config.ts"
   }
 }

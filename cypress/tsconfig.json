@@ -1,0 +1,12 @@
+// cypress/tsconfig.json
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["cypress"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "isolatedModules": false
+  },
+  "include": ["**/*.ts"]
+}
