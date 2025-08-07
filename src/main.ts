@@ -1,6 +1,14 @@
 import { createApp } from 'vue'
-import './assets/styles/index.css'
 import App from './App.vue'
-import router from "./router";
+import './assets/styles/index.css'
 
-createApp(App).use(router).mount("#app");
+import VueApexCharts from "vue3-apexcharts"
+import router from "./router"
+
+const app = createApp(App)
+
+// Register ApexCharts globally
+app.use(VueApexCharts)
+app.component('apexchart', VueApexCharts)
+
+app.use(router).mount("#app")

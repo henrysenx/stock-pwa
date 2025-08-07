@@ -1,16 +1,37 @@
-<script setup lang="ts">
-import Header from './components/Header.vue';
-</script>
-
 <template>
   <div id="app">
-    <Header />
-    <main class="p-4">
+    <Header v-if="showHeader" />
+    <main class="">
       <router-view />
     </main>
   </div>
 </template>
 
+<script>
+import Header from './components/Header.vue';
+
+export default {
+  components: {
+    Header,
+  },
+  data() {
+    return {
+      currentPath: this.$route.path,
+    };
+  },
+  computed: {
+    showHeader() {
+      // Hide header only on landing page
+      return this.$route.path !== '/';
+    },
+  },
+  watch: {
+    '$route.path'(newPath) {
+      this.currentPath = newPath;
+    },
+  },
+};
+</script>
+
 <style scoped>
-/* Глобальные стили приложения */
 </style>

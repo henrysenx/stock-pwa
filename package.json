@@ -1,13 +1,13 @@
 {
-  "name": "tailwind_teach",
+  "name": "stock-pwa",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Стартовый шаблон для разработки современных веб-приложений с использованием Vue 3, Vite, TypeScript, Vue Router и Tailwind CSS.",
-  "author": "Яковенко Алексей <mr.mnogo@gmail.com> (https://t.me/yakvenalexx)",
+  "description": "stock pwa",
+  "author": "henrysenx",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Yakvenalex/vue-typescript-tailwind-starter.git"
+    "url": ""
   },
   "license": "MIT",
   "scripts": {
@@ -17,8 +17,11 @@
   },
   "dependencies": {
     "@vueuse/core": "^12.4.0",
+    "apexcharts": "^5.3.2",
+    "axios": "^1.11.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.13",
+    "vue3-apexcharts": "^1.8.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",

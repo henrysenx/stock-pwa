@@ -1,20 +1,12 @@
+<!-- src/components/Navbar.vue -->
 <template>
-  <header class="p-4 bg-gray-800 text-white">
-    <nav>
-      <ul class="flex space-x-4">
-        <li>
-          <router-link to="/" class="hover:underline">Главная</router-link>
-        </li>
-        <!-- Добавьте другие ссылки по мере необходимости -->
-      </ul>
-    </nav>
-  </header>
+  <nav class="bg-gray-900 text-white px-6 py-4 flex justify-between items-center shadow-md">
+    <router-link to="/" class="text-2xl font-bold text-indigo-400 hover:text-indigo-300">
+      📈 StockPWA
+    </router-link>
+    <div class="space-x-4">
+      <router-link to="/" class="hover:text-indigo-400 transition">Home</router-link>
+      <router-link to="/stocks" class="hover:text-indigo-400 transition">Stocks</router-link>
+    </div>
+  </nav>
 </template>
-
-<script setup lang="ts">
-// Логика компонента (если необходима)
-</script>
-
-<style scoped>
-/* Локальные стили компонента */
-</style>
