@@ -15,7 +15,7 @@
 
     <div v-else class="">
       <!-- Tabs for each MIC -->
-      <div class="flex space-x-2 border-b border-gray-300 mb-4 overflow-x-auto">
+      <div class="flex justify-end space-x-2 border-b border-gray-300 mb-4 overflow-x-auto">
         <button
           v-for="mic in micList"
           :key="mic"
@@ -61,7 +61,7 @@
 
 <script>
 import StockCard from "../components/StockCard.vue";
-import api from "../services/axios";
+import { finHubAPI } from "../services/axios";
 
 export default {
   name: "StockList",
@@ -108,7 +108,7 @@ export default {
     async fetchStocks() {
       this.loading = true;
       try {
-        const { data } = await api.get(
+        const { data } = await finHubAPI.get(
           `/stock/symbol?exchange=US&token=${import.meta.env.VITE_API_KEY}`
         );
 
