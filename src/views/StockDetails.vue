@@ -91,7 +91,7 @@
     </div>
 
     <!-- Chart -->
-     <div class="bg-gray-50 rounded-lg shadow p-4">
+    <div class="bg-gray-50 rounded-lg shadow p-4">
       <apexchart
         v-if="series.length"
         type="candlestick"
@@ -99,8 +99,10 @@
         :series="series"
         height="350"
       />
-      <div v-else class="text-gray-500 italic">No historical data available.</div>
-     </div>
+      <div v-else class="text-gray-500 italic">
+        No historical data available.
+      </div>
+    </div>
 
     <!-- Error State -->
     <div v-if="!profile && !loading" class="text-center text-red-500 mt-6">
@@ -122,7 +124,7 @@ export default {
       loading: true,
       fallbackLogo: "https://via.placeholder.com/64?text=Logo",
       refreshIntervalId: null,
-      series: []
+      series: [],
     };
   },
   methods: {
@@ -238,61 +240,59 @@ export default {
     //     };
 
     //     console.log("Daily Price Data:", dailyData);
-        
+
     //   }
     // },
     async fetchDailyPrice() {
-  const symbol = this.$route.params.symbol;
-  const res = await alphaVantageApi.get(
-    `/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${
-      import.meta.env.VITE_API_KEY2
-    }`
-  );
+      const symbol = this.$route.params.symbol;
+      const res = await alphaVantageApi.get(
+        `/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${
+          import.meta.env.VITE_API_KEY2
+        }`
+      );
 
-  if (res.data["Time Series (Daily)"]) {
-    const dailyData = Object.entries(res.data["Time Series (Daily)"])
-      .slice(0, 30) // latest 30 days
-      .map(([date, data]) => ({
-        x: new Date(date),
-        y: [
-          parseFloat(data["1. open"]),
-          parseFloat(data["2. high"]),
-          parseFloat(data["3. low"]),
-          parseFloat(data["4. close"])
-        ]
-      }));
+      if (res.data["Time Series (Daily)"]) {
+        const dailyData = Object.entries(res.data["Time Series (Daily)"]) // latest 30 days
+          .map(([date, data]) => ({
+            x: new Date(date),
+            y: [
+              parseFloat(data["1. open"]),
+              parseFloat(data["2. high"]),
+              parseFloat(data["3. low"]),
+              parseFloat(data["4. close"]),
+            ],
+          }));
 
-    this.series = [
-      {
-        name: "Daily Price",
-        data: dailyData,
-      },
-    ];
+        this.series = [
+          {
+            name: "Daily Price",
+            data: dailyData,
+          },
+        ];
 
-    this.chartOptions = {
-      chart: {
-        type: "candlestick",
-        toolbar: { show: false },
-      },
-      xaxis: {
-        type: "datetime",
-      },
-      tooltip: {
-        x: {
-          format: "dd MMM yyyy",
-        },
-      },
-      yaxis: {
-        tooltip: {
-          enabled: true,
-        },
-      },
-    };
+        this.chartOptions = {
+          chart: {
+            type: "candlestick",
+            toolbar: { show: false },
+          },
+          xaxis: {
+            type: "datetime",
+          },
+          tooltip: {
+            x: {
+              format: "dd MMM yyyy",
+            },
+          },
+          yaxis: {
+            tooltip: {
+              enabled: true,
+            },
+          },
+        };
 
-    console.log("Candlestick Data:", dailyData);
-  }
-}
-
+        console.log("Candlestick Data:", dailyData);
+      }
+    },
   },
   async created() {
     const symbol = this.$route.params.symbol;
